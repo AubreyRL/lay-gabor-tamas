@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Láy Gábor Tamás — Artist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1c1a18;
+    --parchment: #f5f0e8;
+    --warm-mid: #c9b99a;
+    --divider: #d4c9b0;
+    --faint: rgba(28,26,24,0.08);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--parchment);
+    color: var(--ink);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.6;
+  }
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.6rem 3rem;
+    background: linear-gradient(to bottom, var(--parchment) 60%, transparent);
+  }
+  .nav-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    opacity: 0.75;
+  }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-decoration: none;
+    opacity: 0.55;
+    transition: opacity 0.3s;
+  }
+  .nav-links a:hover, .nav-links a.active { opacity: 1; }
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: 0.12s; }
+  .reveal-delay-2 { transition-delay: 0.24s; }
+  footer {
+    text-align: center;
+    padding: 2.5rem 3rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(28,26,24,0.3);
+    border-top: 1px solid var(--faint);
+    margin-top: 5rem;
+  }
+  @media (max-width: 800px) {
+    nav { padding: 1.4rem 1.5rem; }
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 3rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 75% 40%, rgba(42,58,56,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 70%, rgba(58,50,40,0.06) 0%, transparent 65%);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 15%; bottom: 15%; left: 50%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, var(--divider) 30%, var(--divider) 70%, transparent);
+    opacity: 0.5;
+  }
+  .hero-text { position: relative; max-width: 52rem; }
+  .hero-label {
+    font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--warm-mid); margin-bottom: 1.4rem;
+    opacity: 0; animation: fadeUp 1s ease 0.3s forwards;
+  }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(3.5rem, 8vw, 7rem); line-height: 1.0;
+    opacity: 0; animation: fadeUp 1s ease 0.6s forwards;
+  }
+  .hero-name em { font-style: italic; color: rgba(28,26,24,0.55); }
+  .hero-tagline {
+    margin-top: 1.8rem; font-size: 0.88rem; letter-spacing: 0.06em;
+    color: rgba(28,26,24,0.5); max-width: 34rem;
+    opacity: 0; animation: fadeUp 1s ease 0.9s forwards;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* PHASES */
+  .phases { padding: 6rem 3rem; background: var(--parchment); }
+  .phases-intro { max-width: 42rem; margin: 0 auto 5rem; text-align: center; }
+  .phases-intro h2 {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem); margin-bottom: 1.2rem; line-height: 1.2;
+  }
+  .phases-intro p { color: rgba(28,26,24,0.6); font-size: 0.9rem; line-height: 1.85; }
+  .section-label {
+    font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--warm-mid); margin-bottom: 3rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .section-label::after { content: ''; flex: 1; max-width: 3rem; height: 1px; background: var(--warm-mid); opacity: 0.5; }
+  .phases-grid {
+    display: grid; grid-template-columns: 1fr 1px 1fr;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .phase-divider {
+    background: linear-gradient(to bottom, transparent, var(--divider) 20%, var(--divider) 80%, transparent);
+    margin: 1rem 0;
+  }
+  .phase { padding: 2rem 3.5rem; }
+  .phase-tag {
+    font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase;
+    margin-bottom: 1.4rem; display: inline-block;
+    padding: 0.3rem 0.8rem; border: 1px solid currentColor; opacity: 0.6;
+  }
+  .phase--realist .phase-tag { color: #3a3228; }
+  .phase--abstract .phase-tag { color: #2a3a38; }
+  .phase h3 {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: 2rem; margin-bottom: 0.6rem; line-height: 1.15;
+  }
+  .phase-years { font-size: 0.75rem; letter-spacing: 0.12em; color: var(--warm-mid); margin-bottom: 1.8rem; }
+  .phase p { font-size: 0.88rem; line-height: 1.9; color: rgba(28,26,24,0.65); margin-bottom: 2rem; }
+  .phase-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+  .phase-gallery-item { aspect-ratio: 4/5; overflow: hidden; }
+  .phase-gallery-item:first-child { grid-column: 1 / -1; aspect-ratio: 16/9; }
+  .phase-gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  .phase-gallery-item:hover img { transform: scale(1.03); }
+  .phase-link {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--ink); text-decoration: none; margin-top: 1.8rem;
+    opacity: 0.55; transition: opacity 0.3s, gap 0.3s;
+  }
+  .phase-link:hover { opacity: 1; gap: 1rem; }
+  .phase-link::after { content: '→'; }
+
+  /* ABOUT strip */
+  .about-strip {
+    background: var(--ink); color: var(--parchment);
+    padding: 6rem 3rem; position: relative; overflow: hidden;
+  }
+  .about-strip::before {
+    content: ''; position: absolute; top: -30%; right: -10%;
+    width: 50%; height: 120%;
+    background: radial-gradient(ellipse, rgba(201,185,154,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .about-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1.6fr; gap: 6rem; align-items: start;
+  }
+  .about-left { position: sticky; top: 8rem; }
+  .about-portrait { width: 100%; aspect-ratio: 3/4; overflow: hidden; margin-bottom: 1.4rem; }
+  .about-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  .about-caption { font-size: 0.72rem; letter-spacing: 0.08em; color: rgba(245,240,232,0.35); line-height: 1.6; }
+  .about-show-photo { width: 100%; margin-top: 1rem; overflow: hidden; }
+  .about-show-photo img { width: 100%; display: block; object-fit: cover; transition: transform 0.6s ease; }
+  .about-show-photo:hover img { transform: scale(1.03); }
+  .about-show-label { font-size: 0.62rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(245,240,232,0.3); margin-top: 0.6rem; }
+  .about-right .section-label { color: var(--warm-mid); }
+  .about-right h2 {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(1.8rem, 3vw, 2.6rem); margin-bottom: 2rem; line-height: 1.2; color: var(--parchment);
+  }
+  .about-right h2 em { font-style: italic; color: rgba(245,240,232,0.45); }
+  .about-text p { font-size: 0.9rem; line-height: 1.95; color: rgba(245,240,232,0.6); margin-bottom: 1.4rem; }
+
+  /* CONTACT */
+  .contact {
+    padding: 5rem 3rem; border-top: 1px solid var(--divider);
+    max-width: 1100px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 2rem;
+  }
+  .contact-left h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 2rem; margin-bottom: 0.4rem; }
+  .contact-left p { font-size: 0.82rem; color: rgba(28,26,24,0.5); }
+  .contact-details { margin-top: 0.8rem; }
+  .contact-details a {
+    display: block; color: inherit; opacity: 0.7; text-decoration: none;
+    font-size: 0.85rem; letter-spacing: 0.04em; line-height: 1.9;
+  }
+  .contact-btn {
+    display: inline-block; padding: 0.9rem 2.2rem; border: 1px solid var(--ink);
+    font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.72rem;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink);
+    text-decoration: none; transition: background 0.3s, color 0.3s;
+  }
+  .contact-btn:hover { background: var(--ink); color: var(--parchment); }
+
+  @media (max-width: 900px) {
+    .hero { padding: 0 1.5rem 4rem; }
+    .hero::after { display: none; }
+    .phases { padding: 4rem 1.5rem; }
+    .phases-grid { grid-template-columns: 1fr; }
+    .phase-divider { height: 1px; background: linear-gradient(to right, transparent, var(--divider) 20%, var(--divider) 80%, transparent); margin: 0 1rem; }
+    .phase { padding: 2rem 0; }
+    .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .about-left { position: static; }
+    .contact { flex-direction: column; align-items: flex-start; padding: 4rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-name">Láy Gábor Tamás</a>
+  <ul class="nav-links">
+    <li><a href="gallery.html">Work</a></li>
+    <li><a href="about.html">About &amp; CV</a></li>
+    <li><a href="statement.html">Statement</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-text">
+    <div class="hero-label">Artist &nbsp;·&nbsp; Painter</div>
+    <h1 class="hero-name">Láy<br><em>Gábor Tamás</em></h1>
+    <p class="hero-tagline">A life's work in two movements — the patient eye of realism, and the liberated language of abstraction.</p>
+  </div>
+</section>
+
+<section class="phases" id="work">
+  <div class="phases-intro reveal">
+    <div class="section-label">The Work</div>
+    <h2>Two Phases,<br><em>One Vision</em></h2>
+    <p>Across decades of practice, Gábor Tamás has moved from meticulous observation of the visible world to a deeper investigation of form, colour, and felt experience. Both bodies of work share the same essential question: what does it mean to truly see?</p>
+  </div>
+  <div class="phases-grid">
+    <div class="phase phase--realist reveal">
+      <div class="phase-tag">Phase I</div>
+      <h3>Realist Works</h3>
+      <div class="phase-years">Earlier Period</div>
+      <p>Grounded in careful observation and a classical tradition, the early paintings are studies in light's relationship to the material world. Figures and form rendered with a quiet intensity — presence held in paint.</p>
+      <div class="phase-gallery">
+        <div class="phase-gallery-item">
+          <img src="images/realist-figure.jpg" alt="Figurative work — Láy Gábor Tamás">
+        </div>
+      </div>
+      <a href="gallery.html#realist" class="phase-link">View realist works</a>
+    </div>
+    <div class="phase-divider"></div>
+    <div class="phase phase--abstract reveal reveal-delay-1">
+      <div class="phase-tag">Phase II</div>
+      <h3>Abstract Works</h3>
+      <div class="phase-years">Recent Period</div>
+      <p>The later work releases the grip of representation, allowing form and colour to speak on their own terms. Movement, tension, and stillness coexist within each canvas — an inner landscape made visible through gesture and field.</p>
+      <div class="phase-gallery">
+        <div class="phase-gallery-item">
+          <img src="images/abstract-multicolour.jpg" alt="Abstract work — Láy Gábor Tamás">
+        </div>
+        <div class="phase-gallery-item">
+          <img src="images/abstract-geometric.jpg" alt="Abstract work — Láy Gábor Tamás">
+        </div>
+      </div>
+      <a href="gallery.html#abstract" class="phase-link">View abstract works</a>
+    </div>
+  </div>
+</section>
+
+<section class="about-strip" id="about">
+  <div class="about-inner">
+    <div class="about-left reveal">
+      <div class="about-portrait">
+        <img src="images/portrait.jpg" alt="Láy Gábor Tamás">
+      </div>
+      <div class="about-caption">Láy Gábor Tamás<br>Painter &amp; Visual Artist<br>Valencia, Spain</div>
+      <div class="about-show-photo">
+        <img src="images/show-photo.jpg" alt="Láy Gábor Tamás at his most recent exhibition">
+        <div class="about-show-label">At his most recent exhibition</div>
+      </div>
+    </div>
+    <div class="about-right">
+      <div class="section-label reveal">About</div>
+      <h2 class="reveal reveal-delay-1">A patient witness<br>to <em>the visible world</em></h2>
+      <div class="about-text reveal reveal-delay-2">
+        <p>Láy Gábor Tamás was born in Hungary. In 1956, his family fled during the October Revolution, eventually making their way to the United States, where he grew up from the age of nine. He lived and worked in America for several decades, including a period teaching art at Pima College in Arizona. He later settled in Valencia, Spain, where he continues to paint.</p>
+        <p>His earlier work is rooted in figuration — a practice built on careful looking, on the relationship between the human body and the surfaces it inhabits. Over time, his painting moved toward abstraction, not as a rejection of what came before but as a deepening of the same questions.</p>
+        <p>His paintings are held in private collections and have been exhibited across Europe and the United States.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="contact" id="contact">
+  <div class="contact-left reveal">
+    <h2>Get in touch</h2>
+    <p>For inquiries about works, exhibitions, or sales.</p>
+    <div class="contact-details">
+      <a href="mailto:laygtom@hotmail.com">laygtom@hotmail.com</a>
+      <a href="tel:+34622115846">+34 622 115 846</a>
+    </div>
+  </div>
+  <a href="mailto:laygtom@hotmail.com" class="contact-btn reveal reveal-delay-1">Write to the artist</a>
+</div>
+
+<footer>&copy; 2026 Láy Gábor Tamás &nbsp;·&nbsp; All rights reserved</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

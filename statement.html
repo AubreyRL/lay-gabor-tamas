@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artist's Statement — Láy Gábor Tamás</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --ink: #1c1a18; --parchment: #f5f0e8; --warm-mid: #c9b99a;
+    --divider: #d4c9b0; --faint: rgba(28,26,24,0.08);
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--parchment); color: var(--ink); font-family: 'Jost', sans-serif; font-weight: 300; font-size: 15px; line-height: 1.7; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 999; opacity: 0.6; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.6rem 3rem; background: linear-gradient(to bottom, var(--parchment) 60%, transparent); }
+  .nav-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); text-decoration: none; opacity: 0.75; }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink); text-decoration: none; opacity: 0.55; transition: opacity 0.3s; }
+  .nav-links a:hover, .nav-links a.active { opacity: 1; }
+  .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: 0.12s; }
+  .reveal-delay-2 { transition-delay: 0.24s; }
+  footer { text-align: center; padding: 2.5rem 3rem; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(28,26,24,0.3); border-top: 1px solid var(--faint); margin-top: 5rem; }
+  @media (max-width: 800px) { nav { padding: 1.4rem 1.5rem; } }
+  .page-wrap { max-width: 740px; margin: 0 auto; padding: 10rem 3rem 0; }
+  .page-label { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--warm-mid); margin-bottom: 1.6rem; }
+  .page-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(2.2rem, 4vw, 3.2rem); line-height: 1.1; margin-bottom: 3.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--divider); }
+  .page-title em { font-style: italic; color: rgba(28,26,24,0.4); }
+  .statement-body p { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1.25rem; line-height: 1.85; color: rgba(28,26,24,0.85); margin-bottom: 1.8rem; }
+  .statement-body p + p { text-indent: 1.5rem; }
+  .statement-rule { width: 3rem; height: 1px; background: var(--warm-mid); margin: 3rem 0; opacity: 0.6; }
+  .statement-aside { font-family: 'Jost', sans-serif; font-size: 0.8rem; color: rgba(28,26,24,0.4); letter-spacing: 0.04em; line-height: 1.7; border-left: 1px solid var(--divider); padding-left: 1.4rem; margin: 2.5rem 0; font-style: italic; }
+  @media (max-width: 800px) { .page-wrap { padding: 8rem 1.5rem 0; } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-name">Láy Gábor Tamás</a>
+  <ul class="nav-links">
+    <li><a href="gallery.html">Work</a></li>
+    <li><a href="about.html">About &amp; CV</a></li>
+    <li><a href="statement.html" class="active">Statement</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+</nav>
+<div class="page-wrap">
+  <div class="page-label reveal">Artist's Statement</div>
+  <h1 class="page-title reveal reveal-delay-1">On painting<br><em>and the problem of the surface</em></h1>
+  <div class="statement-body">
+    <p class="reveal reveal-delay-2">I have been making paintings for most of my life, and the thing that still interests me — the thing that keeps me in the studio — is a question I could not have put into words when I started: what is actually happening between a person and a flat surface covered in coloured matter? It sounds almost too simple to be worth asking. But I find it inexhaustible.</p>
+    <p class="reveal">My earlier work was figurative. I spent a long time learning to look carefully — at bodies, at light, at the particular way a hand holds itself when a person is thinking. That discipline still lives in everything I do. You do not stop caring about weight and presence just because you stop painting recognisable things.</p>
+    <div class="statement-rule reveal"></div>
+    <p class="reveal">At some point the figure began to feel like a solution I already knew. I was more interested in the questions that didn't have answers yet — how colour creates space that isn't there, how a mark can feel urgent or resigned depending on what surrounds it, how the eye moves and why. The abstract work came out of following those questions rather than illustrating what I already understood.</p>
+    <div class="statement-aside reveal">"The painting is not a record of what I saw or felt. It is the thing itself — whatever that turns out to be."</div>
+    <p class="reveal">I don't think of the two phases of my work as separate. The realist paintings were always, at some level, about paint. The abstract ones are always, at some level, about the body — its weight, its temperature, the way it occupies space. The picture plane is where those two things meet, and I am still not sure what happens there. That uncertainty is what keeps me working.</p>
+    <p class="reveal">I work in Valencia, where I have lived for a number of years now, after a long time in the United States and before that Hungary, where I was born. My family left in 1956, during the Revolution — I was nine years old. Each of those places is somewhere in the paintings, though I would be hard pressed to tell you exactly where.</p>
+  </div>
+</div>
+<footer>&copy; 2026 Láy Gábor Tamás &nbsp;·&nbsp; All rights reserved</footer>
+<script>  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => obs.observe(el));</script>
+</body>
+</html>
