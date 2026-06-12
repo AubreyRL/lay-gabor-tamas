@@ -141,17 +141,13 @@
   }
 
   .paintings-grid {
-    columns: 3;
-    column-gap: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
   }
 
   .painting-item {
-    break-inside: avoid;
-    -webkit-column-break-inside: avoid;
-    page-break-inside: avoid;
-    margin-bottom: 2rem;
-    display: inline-block;
-    width: 100%;
+    display: block;
   }
 
   .painting-img {
@@ -373,7 +369,7 @@
     nav { padding: 1.4rem 1.5rem; }
     .hero { padding: 7rem 1.5rem 4rem; }
     .paintings { padding: 3.5rem 1.5rem; }
-    .paintings-grid { columns: 2; column-gap: 1rem; }
+    .paintings-grid { grid-template-columns: repeat(2, 1fr); }
     .about-strip { padding: 4rem 1.5rem; }
     .about-inner { grid-template-columns: 1fr; gap: 3rem; }
     .about-left { position: static; }
@@ -381,7 +377,7 @@
   }
 
   @media (max-width: 500px) {
-    .paintings-grid { columns: 1; }
+    .paintings-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
